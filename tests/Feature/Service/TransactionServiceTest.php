@@ -23,12 +23,12 @@ it('can deposit from source to destination', function () {
 
     Event::fake(TransactionCreated::class);
 
-    $dto = new TransactionDTO(145000, TransactionStatus::Success, $accSrc->id, $accDst->id);
+    $dto = new TransactionDTO($qua = 145000, TransactionStatus::Success, $accSrc->id, $accDst->id);
     $tx = $txSrv->deposit($dto);
 
     Event::assertDispatched(TransactionCreated::class);
 
     $this->assertNotNull($tx->fresh());
-    $this->assertEquals(305000, $accSrc->fresh()->quantity);
-    $this->assertEquals(150000, $accDst->fresh()->quantity);
+    $this->assertEquals($accSrc->quantity - $qua, $accSrc->fresh()->quantity);
+    $this->assertEquals($accDst->quantity + $qua, $accDst->fresh()->quantity);
 });
