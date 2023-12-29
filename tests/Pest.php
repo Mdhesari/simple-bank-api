@@ -12,8 +12,11 @@
 */
 
 use App\Models\Account;
+use App\Models\Transaction;
 use App\Repositories\Postgres\AccountRepository;
+use App\Repositories\Postgres\TransactionRepository;
 use App\Services\AccountService;
+use App\Services\TransactionService;
 
 uses(
     Tests\TestCase::class,
@@ -50,5 +53,12 @@ function getAccountService(): AccountService
 {
     return new AccountService(
         new AccountRepository(app(Account::class))
+    );
+}
+
+function getTransactionService(): TransactionService
+{
+    return new TransactionService(
+        new TransactionRepository(app(Transaction::class))
     );
 }
