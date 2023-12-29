@@ -13,7 +13,9 @@
 
 use App\Models\Account;
 use App\Models\Transaction;
+use App\Models\TransactionFee;
 use App\Repositories\Postgres\AccountRepository;
+use App\Repositories\Postgres\TransactionFeeRepository;
 use App\Repositories\Postgres\TransactionRepository;
 use App\Services\AccountService;
 use App\Services\TransactionService;
@@ -59,6 +61,7 @@ function getAccountService(): AccountService
 function getTransactionService(): TransactionService
 {
     return new TransactionService(
-        new TransactionRepository(app(Transaction::class))
+        new TransactionRepository(app(Transaction::class)),
+        new TransactionFeeRepository(app(TransactionFee::class)),
     );
 }

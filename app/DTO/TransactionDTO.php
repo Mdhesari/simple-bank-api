@@ -11,7 +11,6 @@ class TransactionDTO
         public TransactionStatus $status,
         public string            $srcAccountId,
         public string            $dstAccountId,
-
     )
     {
         //
