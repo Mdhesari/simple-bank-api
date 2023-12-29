@@ -7,13 +7,13 @@ use App\Models\Account;
 use App\Models\User;
 use Illuminate\Support\Facades\Event;
 
-it('can deposit from X to Y', function () {
+it('can deposit from source to destination', function () {
     $accFactory = Account::factory();
     $userFactory = User::factory();
-    $accX = $accFactory->create([
+    $accSrc = $accFactory->create([
         'user_id' => $userFactory->create()->id,
     ]);
-    $accY = $accFactory->create([
+    $accDst = $accFactory->create([
         'user_id' => $userFactory->create()->id,
     ]);
 
@@ -21,7 +21,7 @@ it('can deposit from X to Y', function () {
 
     Event::fake(TransactionCreated::class);
 
-    $dto = new TransactionDTO(145000, TransactionStatus::Success, $accX->id, $accY->id);
+    $dto = new TransactionDTO(145000, TransactionStatus::Success, $accSrc->id, $accDst->id);
     $tx = $txSrv->deposit($dto);
 
     Event::assertDispatched(TransactionCreated::class);
