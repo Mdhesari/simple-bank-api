@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use App\Models\Account;
+use App\Models\Transaction;
+use App\Observers\TransactionObserver;
 use App\Repositories\Postgres\AccountRepository;
 use App\Services\AccountService;
 use Illuminate\Foundation\Application;
@@ -27,6 +29,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Transaction::observe(TransactionObserver::class);
     }
 }

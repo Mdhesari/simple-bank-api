@@ -18,4 +18,19 @@ class Transaction extends Model
         'quantity' => 'decimal:0',
         'status'   => TransactionStatus::class,
     ];
+
+    public function srcAccount(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Account::class, 'src_account_id');
+    }
+
+    public function dstAccount(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Account::class, 'dst_account_id');
+    }
+
+    public function isSuccess(): bool
+    {
+        return $this->status === TransactionStatus::Success;
+    }
 }

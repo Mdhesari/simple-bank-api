@@ -11,10 +11,12 @@ it('can deposit from source to destination', function () {
     $accFactory = Account::factory();
     $userFactory = User::factory();
     $accSrc = $accFactory->create([
-        'user_id' => $userFactory->create()->id,
+        'user_id'  => $userFactory->create()->id,
+        'quantity' => 450000,
     ]);
     $accDst = $accFactory->create([
-        'user_id' => $userFactory->create()->id,
+        'user_id'  => $userFactory->create()->id,
+        'quantity' => 5000,
     ]);
 
     $txSrv = getTransactionService();
@@ -27,4 +29,6 @@ it('can deposit from source to destination', function () {
     Event::assertDispatched(TransactionCreated::class);
 
     $this->assertNotNull($tx->fresh());
+    $this->assertEquals(305000, $accSrc->fresh()->quantity);
+    $this->assertEquals(150000, $accDst->fresh()->quantity);
 });
