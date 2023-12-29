@@ -14,5 +14,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/health/ping', PingController::class);
+Route::get('/health/ping', PingController::class)->name('health.ping');
 

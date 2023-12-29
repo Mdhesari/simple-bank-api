@@ -24,13 +24,6 @@ class Account extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function increaseBalance(float $quantity): bool
-    {
-        return $this->forceFill([
-            'quantity' => floatval($this->quantity) + $quantity,
-        ])->save();
-    }
-
     public function decreaseBalance(float $quantity): bool
     {
         return $this->forceFill([

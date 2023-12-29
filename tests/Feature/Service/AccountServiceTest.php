@@ -2,7 +2,6 @@
 
 use App\DTO\AccountDTO;
 use App\Enums\AccountType;
-use App\Models\Account;
 use App\Models\User;
 
 it('can create account', function () {

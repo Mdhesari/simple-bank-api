@@ -17,7 +17,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->singleton(AccountService::class, function (Application $app) {
+        $this->app->bind(AccountService::class, function (Application $app) {
             return new AccountService(
                 new AccountRepository($app->make(Account::class))
             );
