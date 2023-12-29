@@ -17,10 +17,11 @@ class AccountRepository implements AccountRepositoryInterface
 
     /**
      * @param AccountDTO $dto
+     * @return Account
      */
-    public function create(AccountDTO $dto)
+    public function create(AccountDTO $dto): Account
     {
-        $this->entity->create([
+        return $this->entity->create([
             'type'         => $dto->type,
             'card_number'  => $dto->cardNumber,
             'sheba_number' => $dto->shebaNumber,

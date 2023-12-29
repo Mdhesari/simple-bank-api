@@ -11,7 +11,7 @@ it('can create account', function () {
     $user = User::factory()->create();
 
     $accDTO = new AccountDTO(AccountType::Deposit, '6219861054580063', "IR123", 12000, $user->id);
-    $accDTO = $service->create($accDTO);
+    $acc = $service->create($accDTO);
 
-    $this->assertNotNull($accDTO);
+    $this->assertNotNull($acc->fresh());
 });
