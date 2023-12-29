@@ -15,6 +15,7 @@ return new class extends Migration {
             $table->id();
 
             $table->enum('type', AccountType::toArray());
+            // We could have a separate table for card but for simplicity just go with accounts
             $table->string('card_number');
             $table->string('sheba_number');
             $table->float('quantity', 16, 0);
