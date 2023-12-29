@@ -1,6 +1,6 @@
 <?php
 
-it('health ping', function () {
+it('can ping health', function () {
     $response = $this->get(route('health.ping'));
 
     $response->assertSuccessful();
