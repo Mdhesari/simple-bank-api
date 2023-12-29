@@ -11,9 +11,13 @@
 |
 */
 
+use App\Models\Account;
+use App\Repositories\Postgres\AccountRepository;
+use App\Services\AccountService;
+
 uses(
     Tests\TestCase::class,
-    // Illuminate\Foundation\Testing\RefreshDatabase::class,
+// Illuminate\Foundation\Testing\RefreshDatabase::class,
 )->in('Feature');
 
 /*
@@ -42,7 +46,9 @@ expect()->extend('toBeOne', function () {
 |
 */
 
-function something()
+function getAccountService(): AccountService
 {
-    // ..
+    return new AccountService(
+        new AccountRepository(app(Account::class))
+    );
 }
