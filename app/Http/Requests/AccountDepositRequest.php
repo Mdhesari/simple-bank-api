@@ -26,7 +26,7 @@ class AccountDepositRequest extends FormRequest
         return [
             'src_card_number' => ['required', new IrCreditCard],
             'dst_card_number' => ['required', new IrCreditCard],
-            'quantity'        => ['numeric', 'min:'.Transaction::MIN_TRANSACTION_QUANTITY, 'max:'.Transaction::MAX_TRANSACTION_QUANTITY],
+            'quantity'        => ['required', 'numeric', 'min:'.Transaction::MIN_TRANSACTION_QUANTITY, 'max:'.Transaction::MAX_TRANSACTION_QUANTITY],
         ];
     }
 
@@ -40,8 +40,12 @@ class AccountDepositRequest extends FormRequest
     }
 
 
-    private function toEnglishNumbers(string $number)
+    private function toEnglishNumbers(?string $number)
     {
+        if (! $number) {
+            return $number;
+        }
+
         $arabicDigits = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
         $persinaDigits1 = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
         $persinaDigits2 = ['٩', '٨', '٧', '٦', '٥', '٤', '٣', '٢', '١', '٠'];
