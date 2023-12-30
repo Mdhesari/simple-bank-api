@@ -24,7 +24,7 @@ Make sure you have the following installed on your system:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/mdhesari/image-search-processor-laravel-vuejs.git
+   git clone https://github.com:Mdhesari/simple-bank-api.git
    ```
    
 2. Install PHP dependencies:
@@ -32,19 +32,14 @@ Make sure you have the following installed on your system:
    ```bash
    composer install
    ```
-3. Install Javascript & Vuejs dependencies:
-
-    ```bash
-    npm install
-    ```
     
-4. Configure your environment variables:
+3. Configure your environment variables:
 
     ```bash
     cp .env.example .env
     ```
     
-    Please register an account in https://serpapi.com/ and set SERAPI_API_KEY in .env
+    Please register an account in https://kavenegar.com/ and fill KAVENEGAR_API_KEY otherwise you can setup your own driver.
     
 5. Application Key:
 
@@ -61,17 +56,13 @@ Make sure you have the following installed on your system:
 6. Run migrations:
 
     ```
-    sail artisan migrate
+    sail artisan migrate --seed
     ```
 
-7. Build the Vue.js frontend:
+8. Run Queue:
 
     ```
-    npm run dev
+    sail artisan queue:work
     ```
-
-8. Run Horizon:
-
-    ```
-    sail artisan horizon
-    ```
+    
+    OR you can config your own queue driver.

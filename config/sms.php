@@ -1,6 +1,7 @@
 <?php
 
 use App\Space\Sms\Drivers\KavenegarSmsDriver;
+use App\Space\Sms\Drivers\LocalSmsDriver;
 
 return [
     /*
@@ -23,5 +24,8 @@ return [
             'driver'   => KavenegarSmsDriver::class,
             'line'     => '10008663',
         ],
+        'local'     => [
+            'driver' => LocalSmsDriver::class,
+        ]
     ],
 ];
