@@ -33,7 +33,9 @@ class AccountDepositRequest extends FormRequest
     protected function prepareForValidation()
     {
         return $this->merge([
-            'quantity' => $this->toEnglishNumbers($this->quantity),
+            'quantity'        => $this->toEnglishNumbers($this->quantity),
+            'src_card_number' => $this->toEnglishNumbers($this->src_card_number),
+            'dst_card_number' => $this->toEnglishNumbers($this->dst_card_number),
         ]);
     }
 

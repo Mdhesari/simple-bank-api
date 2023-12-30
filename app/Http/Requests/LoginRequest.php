@@ -4,7 +4,6 @@ namespace App\Http\Requests;
 
 use App\Rules\IrMobile;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
 class LoginRequest extends FormRequest
 {
@@ -24,7 +23,7 @@ class LoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'mobile'   => ['required', new IrMobile, Rule::unique('users', 'mobile')],
+            'mobile'   => ['required', new IrMobile],
             'password' => 'required',
         ];
     }

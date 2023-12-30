@@ -1,6 +1,8 @@
 <?php
 
 it('get users recent transactions', function () {
+    $this->actingAs(createUser());
+
     // we make transactions for more than 10 different people
     for ($i = 1; $i < 10; $i++) {
         createTransaction();
