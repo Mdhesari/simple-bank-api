@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->id();
 
             $table->foreignId('transaction_id')->constrained();
-            $table->foreignId('account_id')->constrained();
+            $table->foreignId('credit_card_id')->constrained();
             $table->float('quantity');
 
             $table->timestamps();

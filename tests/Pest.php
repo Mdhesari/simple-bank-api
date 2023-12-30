@@ -61,6 +61,7 @@ function getAccountService(): AccountService
 function getTransactionService(): TransactionService
 {
     return new TransactionService(
+        new AccountRepository(app(Account::class)),
         new TransactionRepository(app(Transaction::class)),
         new TransactionFeeRepository(app(TransactionFee::class)),
     );

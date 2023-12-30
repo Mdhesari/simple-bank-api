@@ -12,7 +12,7 @@ class TransactionFee extends Model
     const DEFAULT_FEE = 500;
 
     protected $fillable = [
-        'quantity', 'transaction_id', 'account_id',
+        'quantity', 'transaction_id', 'credit_card_id',
     ];
 
     protected $casts = [
@@ -24,8 +24,8 @@ class TransactionFee extends Model
         return $this->belongsTo(Transaction::class);
     }
 
-    public function account(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function creditCard(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(Account::class);
+        return $this->belongsTo(CreditCard::class);
     }
 }

@@ -19,10 +19,8 @@ class AccountFactory extends Factory
     public function definition(): array
     {
         return [
-            'type'         => Arr::random(AccountType::toArray()),
-            'quantity'     => fake()->numberBetween(1000, 50000000),
-            'card_number'  => $this->faker->creditCardNumber,
-            'sheba_number' => 'IR980150000000012345678901',
+            'type'     => Arr::random(AccountType::toArray()),
+            'quantity' => fake()->numberBetween(1000, 50000000),
         ];
     }
 }

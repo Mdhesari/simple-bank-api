@@ -1,6 +1,5 @@
 <?php
 
-use App\Enums\AccountType;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -11,12 +10,12 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('accounts', function (Blueprint $table) {
+        Schema::create('credit_cards', function (Blueprint $table) {
             $table->id();
 
-            $table->enum('type', AccountType::toArray());
-            $table->float('quantity', 16, 0);
-            $table->foreignid('user_id')->constrained();
+            $table->foreignId('account_id')->constrained();
+            $table->string('card_number');
+            $table->string('sheba_number')->nullable();
 
             $table->timestamps();
         });
@@ -27,6 +26,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('accounts');
+        Schema::dropIfExists('credit_cards');
     }
 };

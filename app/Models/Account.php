@@ -11,7 +11,7 @@ class Account extends Model
     use HasFactory;
 
     protected $fillable = [
-        'type', 'card_number', 'sheba_number', 'quantity', 'user_id'
+        'type', 'quantity', 'user_id'
     ];
 
     protected $casts = [
@@ -22,6 +22,11 @@ class Account extends Model
     public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function creditCards(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(CreditCard::class);
     }
 
     public function decreaseBalance(float $quantity): bool

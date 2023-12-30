@@ -23,11 +23,9 @@ class AccountRepository implements AccountRepositoryInterface
     public function create(AccountDTO $dto): Account
     {
         return $this->entity->create([
-            'type'         => $dto->type,
-            'card_number'  => $dto->cardNumber,
-            'sheba_number' => $dto->shebaNumber,
-            'quantity'     => $dto->quantity,
-            'user_id'      => $dto->userId,
+            'type'     => $dto->type,
+            'quantity' => $dto->quantity,
+            'user_id'  => $dto->userId,
         ]);
     }
 

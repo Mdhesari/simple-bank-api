@@ -7,7 +7,6 @@ class AccountBalanceDTO
     public function __construct(
         public int    $accountId,
         public float  $quantity,
-        public ?float $fee = null,
     )
     {
         //

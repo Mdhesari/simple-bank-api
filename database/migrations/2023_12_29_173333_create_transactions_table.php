@@ -16,8 +16,8 @@ return new class extends Migration {
 
             $table->enum('status', TransactionStatus::toArray());
             $table->float('quantity', 16);
-            $table->foreignId('src_account_id')->constrained('accounts');
-            $table->foreignId('dst_account_id')->constrained('accounts');
+            $table->foreignId('src_credit_card_id')->constrained('credit_cards');
+            $table->foreignId('dst_credit_card_id')->constrained('credit_cards');
 
             $table->timestamps();
         });

@@ -18,10 +18,10 @@ class TransactionRepository implements TransactionRepositoryInterface
     public function deposit(TransactionDTO $dto): Transaction
     {
         return $this->entity->create([
-            'status'         => $dto->status,
-            'quantity'       => $dto->quantity,
-            'src_account_id' => $dto->srcAccountId,
-            'dst_account_id' => $dto->dstAccountId,
+            'status'             => $dto->status,
+            'quantity'           => $dto->quantity,
+            'src_credit_card_id' => $dto->srcCreditCardId,
+            'dst_credit_card_id' => $dto->dstCreditCardId,
         ]);
     }
 }

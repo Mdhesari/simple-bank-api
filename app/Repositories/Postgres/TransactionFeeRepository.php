@@ -19,7 +19,7 @@ class TransactionFeeRepository implements TransactionFeeRepositoryInterface
     {
         return $this->entity->create([
             'quantity'       => $dto->quantity,
-            'account_id'     => $dto->accountId,
+            'credit_card_id' => $dto->creditCardId,
             'transaction_id' => $dto->transactionId,
         ]);
     }

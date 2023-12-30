@@ -11,7 +11,7 @@ class Transaction extends Model
     use HasFactory;
 
     protected $fillable = [
-        'status', 'quantity', 'fee_quantity', 'src_account_id', 'dst_account_id'
+        'status', 'quantity', 'fee_quantity', 'src_credit_card_id', 'dst_credit_card_id'
     ];
 
     protected $casts = [
@@ -23,14 +23,14 @@ class Transaction extends Model
      * Relationships
      */
 
-    public function srcAccount(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function srcCreditCard(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(Account::class, 'src_account_id');
+        return $this->belongsTo(CreditCard::class, 'src_credit_card_id');
     }
 
-    public function dstAccount(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function dstCreditCard(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(Account::class, 'dst_account_id');
+        return $this->belongsTo(CreditCard::class, 'dst_credit_card_id');
     }
 
     public function fees(): \Illuminate\Database\Eloquent\Relations\HasMany
@@ -58,6 +58,6 @@ class Transaction extends Model
 
     public function getTotalFeeAttribute()
     {
-        return $this->fees()->where('account_id', $this->src_account_id)->sum('quantity');
+        return $this->fees()->where('credit_card_id', $this->src_credit_card_id)->sum('quantity');
     }
 }
