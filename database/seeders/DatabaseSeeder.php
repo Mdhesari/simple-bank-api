@@ -31,6 +31,10 @@ class DatabaseSeeder extends Seeder
             'account_id'  => $account->id,
         ]);
 
+        CreditCard::factory()->for(Account::factory()->for(User::factory()))->create([
+            'card_number' => '6219868654329053',
+        ]);
+
         $fakeCount = 20;
 
         for ($i = 1; $i < $fakeCount; $i++)
