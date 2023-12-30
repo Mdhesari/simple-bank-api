@@ -42,6 +42,7 @@ it(/**
     $this->assertNotNull($tx->fresh());
     // source account gets a fee
     $this->assertEquals(TransactionFee::DEFAULT_FEE, $fee = $tx->fresh()->total_fee);
+    // make sure fee is decreased from source balance
     $this->assertEquals($accountSrc->quantity - ($qua + $fee), $accountSrc->fresh()->quantity);
     $this->assertEquals($accountDst->quantity + $qua, $accountDst->fresh()->quantity);
 });
