@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories\Postgres;
+namespace App\Repositories\Eloquent;
 
 use App\DTO\TransactionDTO;
 use App\Models\Transaction;

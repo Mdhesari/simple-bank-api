@@ -5,7 +5,7 @@ namespace App\Providers;
 use App\Models\Account;
 use App\Models\Transaction;
 use App\Observers\TransactionObserver;
-use App\Repositories\Postgres\AccountRepository;
+use App\Repositories\Eloquent\AccountRepository;
 use App\Services\AccountService;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider;

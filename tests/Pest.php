@@ -14,9 +14,9 @@
 use App\Models\Account;
 use App\Models\Transaction;
 use App\Models\TransactionFee;
-use App\Repositories\Postgres\AccountRepository;
-use App\Repositories\Postgres\TransactionFeeRepository;
-use App\Repositories\Postgres\TransactionRepository;
+use App\Repositories\Eloquent\AccountRepository;
+use App\Repositories\Eloquent\TransactionFeeRepository;
+use App\Repositories\Eloquent\TransactionRepository;
 use App\Services\AccountService;
 use App\Services\TransactionService;
 

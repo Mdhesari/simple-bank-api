@@ -10,7 +10,7 @@ use App\Exceptions\AccountDecreaseBalanceException;
 use App\Exceptions\AccountIncreaseBalanceException;
 use App\Models\Transaction;
 use App\Models\TransactionFee;
-use App\Repositories\Postgres\AccountRepository;
+use App\Repositories\Eloquent\AccountRepository;
 use App\Repositories\TransactionFeeRepositoryInterface;
 use App\Repositories\TransactionRepositoryInterface;
 use Illuminate\Support\Facades\DB;
