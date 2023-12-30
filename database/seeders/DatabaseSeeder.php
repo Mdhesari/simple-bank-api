@@ -18,9 +18,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory()->create([
+        $user = User::factory()->create([
             'mobile'   => '09129008080',
             'password' => Hash::make('secret@123'),
+        ]);
+
+        $account = Account::factory()->create([
+            'user_id' => $user->id,
+        ]);
+        CreditCard::factory()->create([
+            'card_number' => '6219861254320054',
+            'account_id'  => $account->id,
         ]);
 
         $fakeCount = 20;
