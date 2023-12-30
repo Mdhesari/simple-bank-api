@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Health\PingController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,3 +17,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/health/ping', PingController::class)->name('health.ping');
 
+Route::post('auth/login', LoginController::class)->name('auth.login');

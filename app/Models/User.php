@@ -12,6 +12,8 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    const DEFAULT_TOKEN_NAME = 'general';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -45,8 +47,20 @@ class User extends Authenticatable
         'password'           => 'hashed',
     ];
 
+    /**
+     * Relationships
+     */
+
     public function accounts(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Account::class);
+    }
+
+    /**
+     * Scopes
+     */
+    public function scopeMobile($query, $mobile)
+    {
+        return $this->whereMobile($mobile);
     }
 }
