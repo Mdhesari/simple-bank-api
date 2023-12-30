@@ -51,6 +51,11 @@ class Transaction extends Model
      * Attributes
      */
 
+    public function getFormattedQuantityAttribute()
+    {
+        return number_format($this->quantity);
+    }
+
     public function getQuantityWithFeeAttribute()
     {
         return $this->quantity + $this->total_fee;
