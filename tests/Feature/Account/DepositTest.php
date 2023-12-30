@@ -112,3 +112,53 @@ it('cannot user deposit to another user with more than 50000000', function () {
         ])
     ]);
 });
+
+it('can send and process persian number', function () {
+    $srcUser = createUser();
+    $dstUser = createUser();
+
+    $this->actingAs($srcUser);
+
+    // make sure we have enough balance
+    $srcCard = $srcUser->creditCards()->first();
+    $srcCard->account->update([
+        'quantity' => 23000,
+    ]);
+
+    Event::fake(TransactionCreated::class);
+
+    $response = $this->post(route('account.deposit'), [
+        'src_card_number' => $srcCard->card_number,
+        'dst_card_number' => $dstUser->creditCards()->first()->card_number,
+        'quantity'        => '۲۳۰۰۰',
+    ]);
+
+    $response->assertSuccessful();
+
+    Event::assertDispatched(TransactionCreated::class);
+});
+
+it('can send and arabic persian number', function () {
+    $srcUser = createUser();
+    $dstUser = createUser();
+
+    $this->actingAs($srcUser);
+
+    // make sure we have enough balance
+    $srcCard = $srcUser->creditCards()->first();
+    $srcCard->account->update([
+        'quantity' => 230000,
+    ]);
+
+    Event::fake(TransactionCreated::class);
+
+    $response = $this->post(route('account.deposit'), [
+        'src_card_number' => $srcCard->card_number,
+        'dst_card_number' => $dstUser->creditCards()->first()->card_number,
+        'quantity'        => '٤٥٦٠٠',
+    ]);
+
+    $response->assertSuccessful();
+
+    Event::assertDispatched(TransactionCreated::class);
+});

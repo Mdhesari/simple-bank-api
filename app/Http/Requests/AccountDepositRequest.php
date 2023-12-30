@@ -29,4 +29,24 @@ class AccountDepositRequest extends FormRequest
             'quantity'        => ['numeric', 'min:'.Transaction::MIN_TRANSACTION_QUANTITY, 'max:'.Transaction::MAX_TRANSACTION_QUANTITY],
         ];
     }
+
+    protected function prepareForValidation()
+    {
+        return $this->merge([
+            'quantity' => $this->toEnglishNumbers($this->quantity),
+        ]);
+    }
+
+
+    private function toEnglishNumbers(string $number)
+    {
+        $arabicDigits = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
+        $persinaDigits1 = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+        $persinaDigits2 = ['٩', '٨', '٧', '٦', '٥', '٤', '٣', '٢', '١', '٠'];
+        $englishDigits = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+
+        $number = str_replace($arabicDigits, $englishDigits, $number);
+        $number = str_replace($persinaDigits1, $englishDigits, $number);
+        return str_replace($persinaDigits2, $englishDigits, $number);
+    }
 }
