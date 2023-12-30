@@ -22,6 +22,10 @@ class Transaction extends Model
         'status'   => TransactionStatus::class,
     ];
 
+    protected $appends = [
+        'formatted_quantity',
+    ];
+
     /**
      * Relationships
      */

@@ -97,4 +97,9 @@ class TransactionService
             TransactionFee::DEFAULT_FEE, $transaction->src_credit_card_id, $transaction->id,
         ));
     }
+
+    public function getRecent(\App\DTO\UserTransactionFilterDTO $dto)
+    {
+        return $this->transactionRepo->getRecent($dto);
+    }
 }

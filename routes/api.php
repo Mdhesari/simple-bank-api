@@ -3,6 +3,8 @@
 use App\Http\Controllers\Account\DepositController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Health\PingController;
+use App\Http\Controllers\Transaction\TransactionController;
+use App\Http\Controllers\User\UserTransactionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,3 +23,5 @@ Route::get('/health/ping', PingController::class)->name('health.ping');
 Route::post('auth/login', LoginController::class)->name('auth.login');
 
 Route::post('accounts/deposit', DepositController::class)->name('account.deposit');
+
+Route::get('users/recent-transactions', [UserTransactionController::class, 'getRecent'])->name('users.recent-transactions');

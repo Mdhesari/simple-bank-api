@@ -11,6 +11,7 @@
 |
 */
 
+use App\Enums\TransactionStatus;
 use App\Models\Account;
 use App\Models\CreditCard;
 use App\Models\Transaction;
@@ -57,6 +58,33 @@ expect()->extend('toBeOne', function () {
 function createUser(array $data = [])
 {
     return User::factory()->has(Account::factory()->has(CreditCard::factory()))->create($data);
+}
+
+function createUserWithTransactions(array $data = [])
+{
+    return User::factory()->has(
+        Account::factory()->has(
+            CreditCard::factory()->has(
+                Transaction::factory()->for(CreditCard::factory()->for(Account::factory()->for(User::factory())), 'srcCreditCard'),
+                'deposits'
+            )->has(
+                Transaction::factory()->for(CreditCard::factory()->for(Account::factory()->for(User::factory())), 'dstCreditCard'),
+                'withdraws',
+            )
+        )
+    )->create($data);
+}
+
+function createTransaction(array $data = [], $count = 15)
+{
+    return Transaction::factory()
+        ->for(CreditCard::factory()->for(Account::factory()->for(User::factory())), 'srcCreditCard')
+        ->for(CreditCard::factory()->for(Account::factory()->for(User::factory())), 'dstCreditCard')
+        ->count($count)
+        ->create([
+            'status'     => TransactionStatus::Success,
+            'created_at' => now(),
+        ]);
 }
 
 function getAccountService(): AccountService

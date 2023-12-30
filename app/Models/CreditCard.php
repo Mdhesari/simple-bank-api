@@ -24,6 +24,16 @@ class CreditCard extends Model
         return $this->belongsTo(Account::class);
     }
 
+    public function deposits(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Transaction::class, 'dst_credit_card_id');
+    }
+
+    public function withdraws(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Transaction::class, 'src_credit_card_id');
+    }
+
     /**
      * Methods
      */
