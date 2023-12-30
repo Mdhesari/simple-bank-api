@@ -3,18 +3,13 @@
 use App\DTO\TransactionDTO;
 use App\Enums\TransactionStatus;
 use App\Events\TransactionCreated;
-use App\Exceptions\AccountDecreaseBalanceException;
-use App\Exceptions\AccountIncreaseBalanceException;
 use App\Models\Account;
 use App\Models\CreditCard;
 use App\Models\TransactionFee;
 use App\Models\User;
 use Illuminate\Support\Facades\Event;
 
-it(/**
- * @throws AccountIncreaseBalanceException
- * @throws AccountDecreaseBalanceException
- */ 'can deposit from source to destination', function () {
+it('can deposit from source to destination', function () {
     $accFactory = Account::factory();
     $userFactory = User::factory();
 
