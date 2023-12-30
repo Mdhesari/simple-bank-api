@@ -65,6 +65,7 @@ class TransactionService
      */
     private function updateAccountBalance(Transaction $transaction)
     {
+        // We only increase the balance when transaction is succeeded
         if ($transaction->isSuccess()) {
             $dto = new AccountBalanceDTO(
                 $transaction->srcCreditCard->account_id,
