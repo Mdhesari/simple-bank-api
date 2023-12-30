@@ -10,6 +10,9 @@ class Transaction extends Model
 {
     use HasFactory;
 
+    const MAX_TRANSACTION_QUANTITY = 50000000;
+    const MIN_TRANSACTION_QUANTITY = 1000;
+
     protected $fillable = [
         'status', 'quantity', 'fee_quantity', 'src_credit_card_id', 'dst_credit_card_id'
     ];
