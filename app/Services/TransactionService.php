@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\DTO\AccountBalanceDTO;
+use App\DTO\CreditCardBalance;
 use App\DTO\TransactionDTO;
 use App\DTO\TransactionFeeDTO;
 use App\Events\TransactionCreated;
@@ -10,15 +11,18 @@ use App\Exceptions\AccountDecreaseBalanceException;
 use App\Exceptions\AccountIncreaseBalanceException;
 use App\Models\Transaction;
 use App\Models\TransactionFee;
-use App\Repositories\Eloquent\AccountRepository;
+use App\Repositories\AccountRepositoryInterface;
+use App\Repositories\CreditCardRepositoryInterface;
 use App\Repositories\TransactionFeeRepositoryInterface;
 use App\Repositories\TransactionRepositoryInterface;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\ValidationException;
 
 class TransactionService
 {
     public function __construct(
-        private AccountRepository                 $accountRepo,
+        private AccountRepositoryInterface        $accountRepo,
+        private CreditCardRepositoryInterface     $creditCardRepo,
         private TransactionRepositoryInterface    $transactionRepo,
         private TransactionFeeRepositoryInterface $transactionFeeRepo
     )
@@ -29,9 +33,17 @@ class TransactionService
     /**
      * @param TransactionDTO $dto
      * @return Transaction
+     * @throws ValidationException
      */
     public function deposit(TransactionDTO $dto): \App\Models\Transaction
     {
+        if (! $this->creditCardRepo->hasEnoughBalance(new CreditCardBalance($dto->quantity, $dto->srcCreditCardId))) {
+
+            throw ValidationException::withMessages([
+                'src_card_number' => __('validation.card_enough_balance'),
+            ]);
+        }
+
         $transaction = DB::transaction(function () use ($dto) {
             $transaction = $this->transactionRepo->deposit($dto);
 

@@ -170,8 +170,9 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\SmsServiceProvider::class,
 
-        App\Providers\UserServiceProvider::class,
         App\Providers\AccountServiceProvider::class,
+        App\Providers\UserServiceProvider::class,
+        App\Providers\TransactionServiceProvider::class,
     ])->toArray(),
 
     /*

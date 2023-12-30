@@ -157,7 +157,10 @@ return [
     'url'                  => 'The :attribute field must be a valid URL.',
     'ulid'                 => 'The :attribute field must be a valid ULID.',
     'uuid'                 => 'The :attribute field must be a valid UUID.',
-    'ir_mobile'            => 'The iranian mobile is incorrect.',
+
+    'ir_mobile'           => 'The Iranian mobile is incorrect.',
+    'ir_credit_card'      => 'The Iranian credit card is incorrect.',
+    'card_enough_balance' => 'The card balance is not enough.',
 
     /*
     |--------------------------------------------------------------------------

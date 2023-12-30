@@ -2,10 +2,10 @@
 
 namespace App\Http\Requests;
 
-use App\Rules\IrMobile;
+use App\Rules\IrCreditCard;
 use Illuminate\Foundation\Http\FormRequest;
 
-class LoginRequest extends FormRequest
+class AccountDepositRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -18,13 +18,14 @@ class LoginRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     * @return array
      */
     public function rules(): array
     {
         return [
-            'mobile'   => ['required', new IrMobile],
-            'password' => 'required',
+            'src_card_number' => ['required', new IrCreditCard],
+            'dst_card_number' => ['required', new IrCreditCard],
+            'quantity'        => ['numeric', 'min:1000', 'max:50000000'],
         ];
     }
 }

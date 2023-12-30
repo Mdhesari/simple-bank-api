@@ -56,6 +56,11 @@ class User extends Authenticatable
         return $this->hasMany(Account::class);
     }
 
+    public function creditCards(): \Illuminate\Database\Eloquent\Relations\HasManyThrough
+    {
+        return $this->hasManyThrough(CreditCard::class, Account::class);
+    }
+
     /**
      * Scopes
      */

@@ -2,10 +2,7 @@
 
 use App\Events\TransactionCreated;
 use App\Listeners\TransactionNotificationListener;
-use App\Models\Account;
-use App\Models\CreditCard;
 use App\Models\Transaction;
-use App\Models\User;
 use App\Notifications\SendTransactionDepositNotification;
 use App\Notifications\SendTransactionWithdrawNotification;
 use Illuminate\Support\Facades\Notification;
@@ -13,8 +10,8 @@ use Illuminate\Support\Facades\Notification;
 it('can send notifications to source and destination', function () {
     Notification::fake();
 
-    $srcUser = User::factory()->has(Account::factory()->has(CreditCard::factory()))->create();
-    $dstUser = User::factory()->has(Account::factory()->has(CreditCard::factory()))->create();
+    $srcUser = createUser();
+    $dstUser = createUser();
 
     $transaction = Transaction::factory()->create([
         'src_credit_card_id' => $srcUser->accounts()->first()->creditCards()->first()->id,

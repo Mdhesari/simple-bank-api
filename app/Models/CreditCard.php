@@ -15,8 +15,21 @@ class CreditCard extends Model
         'sheba_number',
     ];
 
+    /**
+     * Relationships
+     */
+
     public function account(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Account::class);
+    }
+
+    /**
+     * Methods
+     */
+
+    public function getTotalBalance()
+    {
+        return $this->account->quantity;
     }
 }

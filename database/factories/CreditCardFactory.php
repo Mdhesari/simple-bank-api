@@ -17,8 +17,8 @@ class CreditCardFactory extends Factory
     public function definition(): array
     {
         return [
-            'card_number'  => $this->faker->creditCardNumber,
-            'sheba_number' => 'IR980150000000012345678901',
+            'card_number'  => '621986'.rand(1111111111, 9999999999),
+            'sheba_number' => 'IR98015000000001'.rand(1111111111, 9999999999),
         ];
     }
 }

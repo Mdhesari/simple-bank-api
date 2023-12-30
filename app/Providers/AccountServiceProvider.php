@@ -3,8 +3,11 @@
 namespace App\Providers;
 
 use App\Models\Account;
+use App\Models\CreditCard;
+use App\Repositories\AccountRepositoryInterface;
+use App\Repositories\CreditCardRepositoryInterface;
 use App\Repositories\Eloquent\AccountRepository;
-use App\Services\AccountService;
+use App\Repositories\Eloquent\CreditCardRepository;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
 
@@ -15,10 +18,12 @@ class AccountServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->bind(AccountService::class, function (Application $app) {
-            return new AccountService(
-                new AccountRepository($app->make(Account::class))
-            );
+        $this->app->bind(AccountRepositoryInterface::class, function (Application $app) {
+            return new AccountRepository($app->make(Account::class));
+        });
+
+        $this->app->bind(CreditCardRepositoryInterface::class, function (Application $app) {
+            return new CreditCardRepository($app->make(CreditCard::class));
         });
     }
 

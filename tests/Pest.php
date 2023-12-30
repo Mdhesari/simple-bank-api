@@ -12,9 +12,12 @@
 */
 
 use App\Models\Account;
+use App\Models\CreditCard;
 use App\Models\Transaction;
 use App\Models\TransactionFee;
+use App\Models\User;
 use App\Repositories\Eloquent\AccountRepository;
+use App\Repositories\Eloquent\CreditCardRepository;
 use App\Repositories\Eloquent\TransactionFeeRepository;
 use App\Repositories\Eloquent\TransactionRepository;
 use App\Services\AccountService;
@@ -51,6 +54,11 @@ expect()->extend('toBeOne', function () {
 |
 */
 
+function createUser(array $data = [])
+{
+    return User::factory()->has(Account::factory()->has(CreditCard::factory()))->create($data);
+}
+
 function getAccountService(): AccountService
 {
     return new AccountService(
@@ -62,6 +70,7 @@ function getTransactionService(): TransactionService
 {
     return new TransactionService(
         new AccountRepository(app(Account::class)),
+        new CreditCardRepository(app(CreditCard::class)),
         new TransactionRepository(app(Transaction::class)),
         new TransactionFeeRepository(app(TransactionFee::class)),
     );
