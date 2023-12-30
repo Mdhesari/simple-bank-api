@@ -9,6 +9,7 @@ use App\Models\CreditCard;
 use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -17,6 +18,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        User::factory()->create([
+            'mobile'   => '09129008080',
+            'password' => Hash::make('secret@123'),
+        ]);
+
         $fakeCount = 20;
 
         for ($i = 1; $i < $fakeCount; $i++)

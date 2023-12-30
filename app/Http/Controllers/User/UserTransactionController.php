@@ -14,7 +14,7 @@ class UserTransactionController extends Controller
         private UserService $userSrv
     )
     {
-        //
+        $this->middleware('auth:sanctum');
     }
 
     /**

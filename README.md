@@ -11,6 +11,12 @@ This Laravel-based API provides basic functionality for a simple bank system, al
 
 ## Getting Started
 
+### Notes
+
+- The Default currency is assumed to be Toman
+- We don't consider any authorization policy in this project (as mentioned in document).
+- Most components are tested with written test. 
+
 ### Prerequisites
 
 Make sure you have the following installed on your system:
