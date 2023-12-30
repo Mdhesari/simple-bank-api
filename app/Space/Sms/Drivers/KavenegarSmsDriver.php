@@ -18,6 +18,6 @@ class KavenegarSmsDriver implements SmsDriverInterface
 
     public function send(string $receptor, string $message)
     {
-        dd($this->client->Send($this->config['line'], '9128177871', $message));
+        return $this->client->Send($this->config['line'], '9128177871', $message);
     }
 }
