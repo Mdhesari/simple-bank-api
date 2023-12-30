@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use App\Models\Transaction;
 use App\Rules\IrCreditCard;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class AccountDepositRequest extends FormRequest
 {
@@ -24,8 +25,8 @@ class AccountDepositRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'src_card_number' => ['required', new IrCreditCard],
-            'dst_card_number' => ['required', new IrCreditCard],
+            'src_card_number' => ['required', new IrCreditCard, Rule::exists('credit_cards', 'card_number')],
+            'dst_card_number' => ['required', new IrCreditCard, 'different:src_card_number', Rule::exists('credit_cards', 'card_number')],
             'quantity'        => ['required', 'numeric', 'min:'.Transaction::MIN_TRANSACTION_QUANTITY, 'max:'.Transaction::MAX_TRANSACTION_QUANTITY],
         ];
     }
